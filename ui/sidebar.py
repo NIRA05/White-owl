@@ -185,7 +185,7 @@ def render_sidebar():
                     <div style="font-size: 0.8rem; font-weight: 700; color: #f87171; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
                         <span style="font-size: 0.9rem;">⚠️</span> Key Not Configured
                     </div>
-                    <div style="font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem;">Set AI_API_KEY in .env or Secrets</div>
+                    <div style="font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem;">Set GEMINI_API_KEY in .env or Secrets</div>
                 </div>
                 """,
                 unsafe_allow_html=True

@@ -75,15 +75,13 @@ def get_api_key() -> Optional[str]:
     try:
         import streamlit as st
         if hasattr(st, "secrets"):
-            if "AI_API_KEY" in st.secrets and st.secrets["AI_API_KEY"]:
-                return str(st.secrets["AI_API_KEY"]).strip()
             if "GEMINI_API_KEY" in st.secrets and st.secrets["GEMINI_API_KEY"]:
                 return str(st.secrets["GEMINI_API_KEY"]).strip()
     except Exception:
         pass
 
     # 2. Check OS environment
-    api_key = os.getenv("AI_API_KEY") or os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GEMINI_API_KEY")
     if api_key and api_key.strip():
         return api_key.strip()
 
@@ -124,7 +122,7 @@ def stream_chat(
     """
     api_key = get_api_key()
     if not api_key:
-        yield "⚠️ **API Key Missing**: Please configure `AI_API_KEY` in your `.env` or Streamlit Secrets."
+        yield "⚠️ **API Key Missing**: Please configure `GEMINI_API_KEY` in your `.env` or Streamlit Secrets."
         return
 
     system_instruction = build_system_instruction(style, system_context)
@@ -169,7 +167,7 @@ def stream_chat(
     except Exception as e:
         err_msg = str(e)
         if "API_KEY_INVALID" in err_msg or "400" in err_msg and "key" in err_msg.lower():
-            yield "⚠️ **Invalid API Key**: Please verify your `AI_API_KEY` credentials in `.env` or Streamlit Secrets."
+            yield "⚠️ **Invalid API Key**: Please verify your `GEMINI_API_KEY` credentials in `.env` or Streamlit Secrets."
             return
         elif "RESOURCE_EXHAUSTED" in err_msg or "429" in err_msg:
             yield "⚠️ **Rate Limit Reached**: Gemini quota exceeded. Please wait a moment and try again."
@@ -234,7 +232,7 @@ def analyze_image(
     """Analyzes an uploaded image with a multimodal prompt."""
     api_key = get_api_key()
     if not api_key:
-        return "⚠️ **API Key Missing**: Please configure `AI_API_KEY`."
+        return "⚠️ **API Key Missing**: Please configure `GEMINI_API_KEY`."
 
     system_instruction = build_system_instruction(style)
 

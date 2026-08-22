@@ -8,7 +8,7 @@ import { PDFParse } from "pdf-parse";
 dotenv.config();
 
 function getGeminiClient() {
-  const key = process.env.GEMINI_API_KEY || process.env.AI_API_KEY;
+  const key = process.env.GEMINI_API_KEY;
   if (!key || key.startsWith("your_") || key.startsWith("MY_")) return null;
   return new GoogleGenAI({
     apiKey: key,
@@ -105,7 +105,7 @@ async function startServer() {
 
   // Status check for all configured keys
   app.get("/api/status", (req, res) => {
-    const geminiKey = process.env.GEMINI_API_KEY || process.env.AI_API_KEY;
+    const geminiKey = process.env.GEMINI_API_KEY;
     const isGeminiConfigured = Boolean(geminiKey && geminiKey.length > 5 && !geminiKey.startsWith("your_") && !geminiKey.startsWith("MY_"));
     const grokKey = getGrokApiKey();
     const isGrokConfigured = Boolean(grokKey && grokKey.length > 5);
