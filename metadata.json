@@ -1,0 +1,6 @@
+{
+  "name": "White Owl",
+  "description": "A premium AI chatbot and workspace featuring conversation memory, document assistant, data analyst, code assistant, and text tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
