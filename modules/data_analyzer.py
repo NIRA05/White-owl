@@ -110,7 +110,7 @@ You have been provided with the schema and head sample of an uploaded dataset:
     ) -> go.Figure:
         """Generates interactive Plotly figures tailored to the White Owl dark aesthetic."""
         template = "plotly_dark"
-        owl_colors = ["#d4af37", "#60a5fa", "#34d399", "#f87171", "#a78bfa", "#fbbf24", "#38bdf8"]
+        owl_colors = ["#e50914", "#ffffff", "#666666", "#b30000", "#d9d9d9", "#333333", "#ff4d4d"]
         
         chart_title = title or f"{chart_type.capitalize()} of {y_col if y_col else x_col}"
         
@@ -148,9 +148,9 @@ You have been provided with the schema and head sample of an uploaded dataset:
             fig = px.bar(df, x=x_col, y=y_col, title=chart_title, template=template)
 
         fig.update_layout(
-            paper_bgcolor="#161b22",
-            plot_bgcolor="#0d1117",
-            font=dict(color="#f0f6fc", family="sans-serif"),
+            paper_bgcolor="#1a1a1a",
+            plot_bgcolor="#0b0b0b",
+            font=dict(color="#ffffff", family="sans-serif"),
             margin=dict(l=40, r=40, t=50, b=40)
         )
         return fig

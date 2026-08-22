@@ -15,8 +15,8 @@ def render_sidebar():
             """
             <div style="text-align: center; margin-bottom: 1.25rem;">
                 <div style="font-size: 2.5rem; margin-bottom: 0.2rem;">🦉</div>
-                <div style="font-size: 1.35rem; font-weight: 800; color: #d4af37; letter-spacing: 0.08em; text-transform: uppercase;">WHITE OWL</div>
-                <div style="font-size: 0.75rem; color: #8b949e; letter-spacing: 0.15em; text-transform: uppercase;">Think. Ask. Discover.</div>
+                <div style="font-size: 1.35rem; font-weight: 800; color: #e50914; letter-spacing: 0.08em; text-transform: uppercase;">WHITE OWL</div>
+                <div style="font-size: 0.75rem; color: #b3b3b3; letter-spacing: 0.15em; text-transform: uppercase;">Think. Ask. Discover.</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -169,8 +169,8 @@ def render_sidebar():
         if api_ready:
             st.markdown(
                 f"""
-                <div style="background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 0.6rem 0.8rem; text-align: center;">
-                    <div style="font-size: 0.8rem; font-weight: 700; color: #34d399; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+                <div style="background: rgba(229, 9, 20, 0.1); border: 1px solid rgba(229, 9, 20, 0.3); border-radius: 8px; padding: 0.6rem 0.8rem; text-align: center;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #ffffff; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
                         <span style="font-size: 0.9rem;">●</span> API Connected
                     </div>
                     <div style="font-size: 0.7rem; color: #8b949e; margin-top: 0.2rem;">Key: {get_api_key_masked()}</div>

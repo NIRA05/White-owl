@@ -10,14 +10,14 @@ def apply_custom_styles(theme: str = "Dark"):
     
     is_dark = (theme == "Dark")
     
-    bg_color = "#0b0f17" if is_dark else "#f8fafc"
-    card_bg = "rgba(22, 27, 34, 0.75)" if is_dark else "rgba(255, 255, 255, 0.85)"
-    border_color = "rgba(212, 175, 55, 0.2)" if is_dark else "rgba(203, 213, 225, 0.8)"
-    text_primary = "#f0f6fc" if is_dark else "#0f172a"
-    text_muted = "#8b949e" if is_dark else "#64748b"
-    accent_gold = "#d4af37"
-    accent_gold_glow = "rgba(212, 175, 55, 0.15)"
-    user_bubble_bg = "#1f2937" if is_dark else "#e2e8f0"
+    bg_color = "#0b0b0b" if is_dark else "#ffffff"
+    card_bg = "rgba(26, 26, 26, 0.92)" if is_dark else "#ffffff"
+    border_color = "rgba(229, 9, 20, 0.35)" if is_dark else "rgba(229, 9, 20, 0.45)"
+    text_primary = "#ffffff" if is_dark else "#0b0b0b"
+    text_muted = "#b3b3b3" if is_dark else "#4d4d4d"
+    accent_red = "#e50914"
+    accent_red_glow = "rgba(229, 9, 20, 0.2)"
+    user_bubble_bg = "#1a1a1a" if is_dark else "#f2f2f2"
     owl_bubble_bg = "rgba(22, 27, 34, 0.9)" if is_dark else "#ffffff"
 
     custom_css = f"""
@@ -39,21 +39,21 @@ def apply_custom_styles(theme: str = "Dark"):
     .owl-hero-container {{
         text-align: center;
         padding: 2.5rem 1rem 1.5rem 1rem;
-        background: radial-gradient(circle at center, {accent_gold_glow} 0%, transparent 70%);
+        background: radial-gradient(circle at center, {accent_red_glow} 0%, transparent 70%);
         border-radius: 16px;
         margin-bottom: 2rem;
     }}
     .owl-icon {{
         font-size: 3.5rem;
         display: inline-block;
-        filter: drop-shadow(0 4px 12px {accent_gold_glow});
+        filter: drop-shadow(0 4px 12px {accent_red_glow});
         margin-bottom: 0.5rem;
     }}
     .owl-title {{
         font-size: 2.25rem;
         font-weight: 800;
         letter-spacing: 0.08em;
-        color: {accent_gold};
+        color: {accent_red};
         margin: 0;
         text-transform: uppercase;
     }}
@@ -89,14 +89,14 @@ def apply_custom_styles(theme: str = "Dark"):
         backdrop-filter: blur(8px);
     }}
     .prompt-card:hover {{
-        border-color: {accent_gold};
+        border-color: {accent_red};
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px {accent_gold_glow};
+        box-shadow: 0 6px 16px {accent_red_glow};
     }}
     .prompt-card-title {{
         font-weight: 700;
         font-size: 0.95rem;
-        color: {accent_gold};
+        color: {accent_red};
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -136,10 +136,10 @@ def apply_custom_styles(theme: str = "Dark"):
         font-weight: 600;
     }}
     .user-tag {{
-        color: #60a5fa;
+        color: {accent_red};
     }}
     .owl-tag {{
-        color: {accent_gold};
+        color: {accent_red};
         display: flex;
         align-items: center;
         gap: 0.35rem;
@@ -159,8 +159,8 @@ def apply_custom_styles(theme: str = "Dark"):
         border: 1px solid {border_color};
     }}
     .stButton>button:hover {{
-        border-color: {accent_gold};
-        color: {accent_gold};
+        border-color: {accent_red};
+        color: {accent_red};
     }}
 
     /* Status badge pill */
@@ -176,9 +176,9 @@ def apply_custom_styles(theme: str = "Dark"):
         letter-spacing: 0.05em;
     }}
     .status-connected {{
-        background: rgba(52, 211, 153, 0.15);
-        color: #34d399;
-        border: 1px solid rgba(52, 211, 153, 0.3);
+        background: rgba(229, 9, 20, 0.15);
+        color: #ffffff;
+        border: 1px solid rgba(229, 9, 20, 0.3);
     }}
     .status-disconnected {{
         background: rgba(248, 113, 113, 0.15);
