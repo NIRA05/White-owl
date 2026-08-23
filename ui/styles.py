@@ -25,7 +25,6 @@ def apply_custom_styles(theme: str = "Dark"):
     /* Hide default Streamlit headers and footers */
     #MainMenu {{visibility: hidden;}}
     footer {{visibility: hidden;}}
-    header {{visibility: hidden;}}
     .stDeployButton {{display:none;}}
 
     /* Global typography & background */

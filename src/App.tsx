@@ -364,28 +364,26 @@ export default function App() {
           onChangeTemperature={setTemperature}
           isDark={isDark}
           onToggleTheme={() => setIsDark(!isDark)}
-          onClose={() => setIsSidebarOpen(false)}
+          onToggleCollapse={() => setIsSidebarOpen(false)}
           apiStatus={apiStatus}
         />
       )}
 
+      {!isSidebarOpen && currentMode !== "chat" && (
+        <button
+          id="floating-sidebar-open-btn"
+          onClick={() => setIsSidebarOpen(true)}
+          className="fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white shadow-xl shadow-red-600/30 flex items-center gap-2 text-xs font-bold transition-all cursor-pointer"
+          title="Open Sidebar"
+          aria-label="Open sidebar"
+        >
+          <PanelLeftOpen className="w-4 h-4" />
+          <span>Menu</span>
+        </button>
+      )}
+
       {/* Main Workspace Stage */}
       <main className="relative flex-1 flex flex-col h-screen overflow-hidden">
-        {!isSidebarOpen && (
-          <button
-            id="open-sidebar-btn"
-            onClick={() => setIsSidebarOpen(true)}
-            className={`absolute left-4 top-4 z-10 p-2 rounded-lg border shadow-sm transition-colors cursor-pointer ${
-              isDark
-                ? "bg-black border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-red-400"
-                : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-500"
-            }`}
-            title="Open sidebar"
-            aria-label="Open sidebar"
-          >
-            <PanelLeftOpen className="w-5 h-5" />
-          </button>
-        )}
         {currentMode === "chat" && (
           <ChatView
             conversationTitle={activeConversation.title}
@@ -396,6 +394,8 @@ export default function App() {
             isDark={isDark}
             selectedModel={selectedModel}
             responseStyle={responseStyle}
+            onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+            isSidebarCollapsed={!isSidebarOpen}
           />
         )}
 

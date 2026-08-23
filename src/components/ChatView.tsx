@@ -8,7 +8,8 @@ import {
   Sparkles, 
   RefreshCw, 
   ArrowRight,
-  Bot
+  Bot,
+  PanelLeftOpen
 } from "lucide-react";
 import { Message, ResponseStyle } from "../types";
 import { OwlAvatar } from "./OwlAvatar";
@@ -22,6 +23,8 @@ interface ChatViewProps {
   isDark: boolean;
   selectedModel: string;
   responseStyle: ResponseStyle;
+  onToggleSidebar?: () => void;
+  isSidebarCollapsed?: boolean;
 }
 
 const QUICK_PROMPTS = [
@@ -66,6 +69,8 @@ export const ChatView: React.FC<ChatViewProps> = ({
   isDark,
   selectedModel,
   responseStyle,
+  onToggleSidebar,
+  isSidebarCollapsed = false,
 }) => {
   const [inputText, setInputText] = useState("");
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
@@ -120,6 +125,21 @@ export const ChatView: React.FC<ChatViewProps> = ({
         isDark ? "bg-black border-zinc-900" : "bg-white border-zinc-200"
       }`}>
         <div className="flex items-center gap-3">
+          {onToggleSidebar && (
+            <button
+              id="sidebar-open-btn"
+              onClick={onToggleSidebar}
+              className={`p-2 rounded-lg border transition-colors cursor-pointer flex items-center justify-center ${
+                isSidebarCollapsed
+                  ? "border-red-600/40 bg-red-600/10 text-red-500 hover:bg-red-600/20 shadow-sm"
+                  : "border-zinc-800 text-zinc-400 hover:text-white"
+              }`}
+              title={isSidebarCollapsed ? "Open Sidebar" : "Toggle Sidebar"}
+              aria-label={isSidebarCollapsed ? "Open sidebar" : "Toggle sidebar"}
+            >
+              <PanelLeftOpen className="w-4 h-4" />
+            </button>
+          )}
           <OwlAvatar size="sm" />
           <div>
             <h2 className="font-bold text-sm text-red-500 tracking-wide truncate max-w-md">

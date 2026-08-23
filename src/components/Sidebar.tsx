@@ -38,7 +38,7 @@ interface SidebarProps {
   onChangeTemperature: (temp: number) => void;
   isDark: boolean;
   onToggleTheme: () => void;
-  onClose: () => void;
+  onToggleCollapse?: () => void;
   apiStatus: { configured: boolean; keyMasked: string; activeProvider?: string; grokConfigured?: boolean; geminiConfigured?: boolean };
 }
 
@@ -59,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onChangeTemperature,
   isDark,
   onToggleTheme,
-  onClose,
+  onToggleCollapse,
   apiStatus,
 }) => {
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -114,15 +114,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
-          <button
-            id="close-sidebar-btn"
-            onClick={onClose}
-            className="p-2 rounded-lg hover:bg-zinc-500/10 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
-            title="Close sidebar"
-            aria-label="Close sidebar"
-          >
-            <PanelLeftClose className="w-4 h-4" />
-          </button>
+          {onToggleCollapse && (
+            <button
+              id="sidebar-close-btn"
+              onClick={onToggleCollapse}
+              className="p-1.5 rounded-lg hover:bg-zinc-500/10 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
+              title="Close Sidebar"
+              aria-label="Close sidebar"
+            >
+              <PanelLeftClose className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
 
