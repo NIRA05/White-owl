@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { PanelLeftOpen } from "lucide-react";
 import { Sidebar } from "./components/Sidebar";
 import { ChatView } from "./components/ChatView";
 import { PDFAssistantView } from "./components/PDFAssistantView";
@@ -39,6 +40,7 @@ export default function App() {
   const [responseStyle, setResponseStyle] = useState<ResponseStyle>("Balanced");
   const [temperature, setTemperature] = useState<number>(0.7);
   const [isDark, setIsDark] = useState<boolean>(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
   const [isStreaming, setIsStreaming] = useState<boolean>(false);
   const [apiStatus, setApiStatus] = useState<{
     configured: boolean;
@@ -344,28 +346,46 @@ export default function App() {
   return (
       <div className={`flex h-screen w-screen overflow-hidden ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
       {/* Persistent Sidebar */}
-      <Sidebar
-        currentMode={currentMode}
-        onSelectMode={setCurrentMode}
-        conversations={conversations}
-        activeConvId={activeConvId}
-        onSelectConversation={setActiveConvId}
-        onNewChat={handleNewChat}
-        onDeleteConversation={handleDeleteConversation}
-        onRenameConversation={handleRenameConversation}
-        selectedModel={selectedModel}
-        onChangeModel={setSelectedModel}
-        responseStyle={responseStyle}
-        onChangeResponseStyle={setResponseStyle}
-        temperature={temperature}
-        onChangeTemperature={setTemperature}
-        isDark={isDark}
-        onToggleTheme={() => setIsDark(!isDark)}
-        apiStatus={apiStatus}
-      />
+      {isSidebarOpen && (
+        <Sidebar
+          currentMode={currentMode}
+          onSelectMode={setCurrentMode}
+          conversations={conversations}
+          activeConvId={activeConvId}
+          onSelectConversation={setActiveConvId}
+          onNewChat={handleNewChat}
+          onDeleteConversation={handleDeleteConversation}
+          onRenameConversation={handleRenameConversation}
+          selectedModel={selectedModel}
+          onChangeModel={setSelectedModel}
+          responseStyle={responseStyle}
+          onChangeResponseStyle={setResponseStyle}
+          temperature={temperature}
+          onChangeTemperature={setTemperature}
+          isDark={isDark}
+          onToggleTheme={() => setIsDark(!isDark)}
+          onClose={() => setIsSidebarOpen(false)}
+          apiStatus={apiStatus}
+        />
+      )}
 
       {/* Main Workspace Stage */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden">
+      <main className="relative flex-1 flex flex-col h-screen overflow-hidden">
+        {!isSidebarOpen && (
+          <button
+            id="open-sidebar-btn"
+            onClick={() => setIsSidebarOpen(true)}
+            className={`absolute left-4 top-4 z-10 p-2 rounded-lg border shadow-sm transition-colors cursor-pointer ${
+              isDark
+                ? "bg-black border-zinc-800 text-zinc-300 hover:border-red-500 hover:text-red-400"
+                : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-500"
+            }`}
+            title="Open sidebar"
+            aria-label="Open sidebar"
+          >
+            <PanelLeftOpen className="w-5 h-5" />
+          </button>
+        )}
         {currentMode === "chat" && (
           <ChatView
             conversationTitle={activeConversation.title}

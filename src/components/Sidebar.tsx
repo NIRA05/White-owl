@@ -15,7 +15,8 @@ import {
   Sun, 
   Moon, 
   CheckCircle2, 
-  AlertCircle
+  AlertCircle,
+  PanelLeftClose
 } from "lucide-react";
 import { WorkspaceMode, Conversation, ResponseStyle } from "../types";
 import { OwlAvatar } from "./OwlAvatar";
@@ -37,6 +38,7 @@ interface SidebarProps {
   onChangeTemperature: (temp: number) => void;
   isDark: boolean;
   onToggleTheme: () => void;
+  onClose: () => void;
   apiStatus: { configured: boolean; keyMasked: string; activeProvider?: string; grokConfigured?: boolean; geminiConfigured?: boolean };
 }
 
@@ -57,6 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onChangeTemperature,
   isDark,
   onToggleTheme,
+  onClose,
   apiStatus,
 }) => {
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -101,14 +104,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <p className="text-[10px] tracking-widest text-zinc-400 uppercase font-semibold">Think. Ask. Discover.</p>
           </div>
         </div>
-        <button
-          id="theme-toggle-btn"
-          onClick={onToggleTheme}
-          className="p-2 rounded-lg hover:bg-zinc-500/10 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
-          title="Toggle Theme"
-        >
-          {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            id="theme-toggle-btn"
+            onClick={onToggleTheme}
+            className="p-2 rounded-lg hover:bg-zinc-500/10 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
+            title="Toggle Theme"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+          <button
+            id="close-sidebar-btn"
+            onClick={onClose}
+            className="p-2 rounded-lg hover:bg-zinc-500/10 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
+            title="Close sidebar"
+            aria-label="Close sidebar"
+          >
+            <PanelLeftClose className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       {/* New Chat Button */}
