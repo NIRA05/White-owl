@@ -4,8 +4,11 @@ Renders the primary conversational canvas, quick prompt accelerators, streaming 
 """
 
 import streamlit as st
+from pathlib import Path
 from modules.ai_client import stream_chat
 from modules.chat_manager import ChatManager
+
+OWL_IMAGE_PATH = Path(__file__).resolve().parents[1] / "src" / "assets" / "images" / "white_owl_avatar_1787395434065.jpg"
 
 QUICK_PROMPTS = [
     {
@@ -42,10 +45,10 @@ QUICK_PROMPTS = [
 
 def render_hero_banner():
     """Renders the signature White Owl welcome hero."""
+    st.image(str(OWL_IMAGE_PATH), width=180)
     st.markdown(
         """
         <div class="owl-hero-container">
-            <div class="owl-icon">🦉</div>
             <h1 class="owl-title">WHITE OWL</h1>
             <div class="owl-tagline">Think. Ask. Discover.</div>
             <div class="owl-subtext">How can I help you today?</div>

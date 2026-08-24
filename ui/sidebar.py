@@ -4,17 +4,20 @@ Renders the navigation drawer, chat history manager, parameter controls, and API
 """
 
 import streamlit as st
+from pathlib import Path
 from modules.ai_client import is_api_configured, get_api_key_masked, AVAILABLE_MODELS, STYLE_PROMPTS
 from modules.chat_manager import ChatManager
+
+OWL_IMAGE_PATH = Path(__file__).resolve().parents[1] / "src" / "assets" / "images" / "white_owl_avatar_1787395434065.jpg"
 
 def render_sidebar():
     """Renders the comprehensive White Owl sidebar."""
     with st.sidebar:
         # Header Brand
+        st.image(str(OWL_IMAGE_PATH), width=100)
         st.markdown(
             """
             <div style="text-align: center; margin-bottom: 1.25rem;">
-                <div style="font-size: 2.5rem; margin-bottom: 0.2rem;">🦉</div>
                 <div style="font-size: 1.35rem; font-weight: 800; color: #e50914; letter-spacing: 0.08em; text-transform: uppercase;">WHITE OWL</div>
                 <div style="font-size: 0.75rem; color: #b3b3b3; letter-spacing: 0.15em; text-transform: uppercase;">Think. Ask. Discover.</div>
             </div>
